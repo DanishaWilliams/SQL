@@ -60,24 +60,30 @@ VALUES
 
 # Analysis: 
 
+# What are the top 3 industries with the most revenue on the fortune 500?
 SELECT industry 
 ,MAX(revenue) AS max_revenue
 FROM fortune_companies
 GROUP BY industry
 ORDER BY max_revenue desc
-LIMIT 3;
+LIMIT 3
+;
 
+# Round the average employee tenure in the retail industry?
 SELECT industry
 ,ROUND(avg_employee_tenure) AS avg_employee_tenure 
 FROM fortune_companies
-WHERE industry = 'Retail';
+WHERE industry = 'Retail'
+;
 
+# Which companies have 8 week or more in maternity leave and helath care benefits?
 SELECT company_name
 FROM fortune_companies
 WHERE maternity_leave_weeks<=8
-AND healthcare_benefits=1;
+AND healthcare_benefits=1
+;
 
-
+# Assign all the companies in the Healthcare industry as "mother friendly workplace", "acceptable", or "abysmal" based on the maternity leave offered.
 SELECT
 company_name,
 CASE 
@@ -86,13 +92,15 @@ CASE
   ELSE 'abysmal'
 END as mother_friendliness
 FROM fortune_companies
-WHERE industry='Healthcare';
+WHERE industry='Healthcare'
+;
 
-
+# Assign employees who's tenure is 5 years or more as "long" and less than 5 as "short".
 SELECT company_name,
  CASE
    WHEN avg_employee_tenure >=5 THEN 'Long'
    WHEN avg_employee_tenure <=4.9 THEN 'Short'
    ELSE NULL
    END AS 'tenure_status'
- FROM fortune_companies;
+ FROM fortune_companies
+;
