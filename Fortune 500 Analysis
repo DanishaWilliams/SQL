@@ -57,3 +57,42 @@ VALUES
     ('Company II', 'Telecommunications', 110.5, 2000, 1, 21, 12, 4.9),
     ('Company JJ', 'Manufacturing', 370.0, 3100, 1, 20, 12, 7.6),
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
+
+# Analysis: 
+
+SELECT industry 
+,MAX(revenue) AS max_revenue
+FROM fortune_companies
+GROUP BY industry
+ORDER BY max_revenue desc
+LIMIT 3;
+
+SELECT industry
+,ROUND(avg_employee_tenure) AS avg_employee_tenure 
+FROM fortune_companies
+WHERE industry = 'Retail';
+
+SELECT company_name
+FROM fortune_companies
+WHERE maternity_leave_weeks<=8
+AND healthcare_benefits=1;
+
+
+SELECT
+company_name,
+CASE 
+  WHEN maternity_leave_weeks >= 10 THEN 'mother friendly workplace'
+  WHEN maternity_leave_weeks >= 8 THEN 'acceptable'
+  ELSE 'abysmal'
+END as mother_friendliness
+FROM fortune_companies
+WHERE industry='Healthcare';
+
+
+SELECT company_name,
+ CASE
+   WHEN avg_employee_tenure >=5 THEN 'Long'
+   WHEN avg_employee_tenure <=4.9 THEN 'Short'
+   ELSE NULL
+   END AS 'tenure_status'
+ FROM fortune_companies;
