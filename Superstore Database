@@ -1,0 +1,23 @@
+#This project is utilizing different aggregate functions on the price column of the superstore database.
+
+#Use a SELECT statement to order the items by price.
+SELECT item_name, price
+FROM superstore
+ORDER BY price desc;
+
+#Show total price in the superstore database.
+SELECT SUM(price)
+FROM superstore;
+
+#Show average price in the superstore database.
+SELECT AVG(price)
+FROM superstore;
+
+#Show minimum price in the superstore database.
+SELECT MIN(price)
+FROM superstore;
+
+#Show a statistic about the price for items in the category of "Kitchen Supplies".
+SELECT AVG(price)
+FROM superstore
+WHERE category = 'Kitchen Supplies';
